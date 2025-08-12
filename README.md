@@ -10,7 +10,7 @@ This function is used to print the address of a specified variable by the
 function.
 
 ```c
-int	ft_print_addr(void *ptr);
+int	ft_print_addr(va_list ap);
 ```
 
 When the pointer of the variable whose address will be capture is informed, the 
@@ -27,7 +27,7 @@ It prints a character on the screen and returns the number printed or the number
 used. Even if it is a non-printable character, it must be counted.
 
 ```c
-int	ft_print_char(const char c);
+int	ft_print_char(va_list ap);
 ```
 
 ## [ft_print_dec.c]()
@@ -35,7 +35,7 @@ int	ft_print_char(const char c);
 Prints a decimal number on the display, including its sign if it is negative.
 
 ```c
-int	ft_print_dec(const int nbr);
+int	ft_print_dec(va_list ap);
 ```
 
 ## [ft_print_udec.c]()
@@ -43,7 +43,7 @@ int	ft_print_dec(const int nbr);
 Prints a decimal number on the display, without including sign.
 
 ```c
-int	ft_print_udec(const unsigned int nbr);
+int	ft_print_udec(va_list ap);
 ```
 
 ## [ft_print_str.c]()
