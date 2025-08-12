@@ -6,16 +6,18 @@
 /*   By: mhidani <mhidani@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 23:03:43 by mhidani           #+#    #+#             */
-/*   Updated: 2025/08/08 23:09:13 by mhidani          ###   ########.fr       */
+/*   Updated: 2025/08/12 08:36:02 by mhidani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_print_hexup(const unsigned int nbr)
+int	ft_print_hexup(va_list ap)
 {
-	int	count;
+	int				count;
+	unsigned int	nbr;
 
-	count = ft_putnbr_ul((unsigned long)nbr, 16, HEX_UP, 1);
+	nbr = va_arg(ap, unsigned int);
+	count = ft_putnbr_ul(nbr, 16, "0123456789ABCDEF");
 	return (count);
 }

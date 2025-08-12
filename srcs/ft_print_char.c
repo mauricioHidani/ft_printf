@@ -12,8 +12,11 @@
 
 #include "ft_printf.h"
 
-int	ft_print_char(const char c)
+int	ft_print_char(va_list ap)
 {
+	char	c;
+
+	c = va_arg(ap, int);
 	write(1, &c, 1);
 	return (1);
 }
