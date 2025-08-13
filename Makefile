@@ -6,7 +6,7 @@
 #    By: mhidani <mhidani@student.42sp.org.br>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/08 08:57:47 by mhidani           #+#    #+#              #
-#    Updated: 2025/08/11 18:09:24 by mhidani          ###   ########.fr        #
+#    Updated: 2025/08/13 10:45:13 by mhidani          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,6 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-re:
-	fclean all
+re: fclean all
 
 .PHONY: all fclean clean re
