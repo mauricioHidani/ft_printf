@@ -6,7 +6,7 @@
 /*   By: mhidani <mhidani@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 11:09:13 by mhidani           #+#    #+#             */
-/*   Updated: 2025/08/11 18:29:41 by mhidani          ###   ########.fr       */
+/*   Updated: 2025/08/12 09:07:09 by mhidani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,26 @@
 
 static int	ft_print_specifier(const char type, va_list ap)
 {
-	int	count;
+	size_t		i;
+	t_specifier	specifiers[9];
 
-	count = 0;
-	if (type == 'c')
-		count = ft_print_char(va_arg(ap, int));
-	else if (type == 's')
-		count = ft_print_str(va_arg(ap, char *));
-	else if (type == 'p')
-		count = ft_print_addr(va_arg(ap, void *));
-	else if (type == 'd' || type == 'i')
-		count = ft_print_dec(va_arg(ap, int));
-	else if (type == 'u')
-		count = ft_print_udec(va_arg(ap, unsigned int));
-	else if (type == 'x')
-		count = ft_print_hex(va_arg(ap, unsigned int));
-	else if (type == 'X')
-		count = ft_print_hexup(va_arg(ap, unsigned int));
-	else if (type == '%')
-		count = write(1, "%%", 1);
-	return (count);
+	specifiers[0] = (t_specifier){'c', ft_print_char};
+	specifiers[1] = (t_specifier){'s', ft_print_str};
+	specifiers[2] = (t_specifier){'p', ft_print_addr};
+	specifiers[3] = (t_specifier){'d', ft_print_dec};
+	specifiers[4] = (t_specifier){'i', ft_print_dec};
+	specifiers[5] = (t_specifier){'u', ft_print_udec};
+	specifiers[6] = (t_specifier){'x', ft_print_hex};
+	specifiers[7] = (t_specifier){'X', ft_print_hexup};
+	specifiers[8] = (t_specifier){'%', ft_print_perc};
+	i = 0;
+	while (i < (sizeof(specifiers) / sizeof(specifiers[0])))
+	{
+		if (specifiers[i].type == type)
+			return (specifiers[i].f(ap));
+		i++;
+	}
+	return (0);
 }
 
 int	ft_printf(const char *src, ...)
