@@ -6,7 +6,7 @@
 /*   By: mhidani <mhidani@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 11:09:13 by mhidani           #+#    #+#             */
-/*   Updated: 2025/08/12 09:07:09 by mhidani          ###   ########.fr       */
+/*   Updated: 2025/08/15 10:54:52 by mhidani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,31 @@ static int	ft_print_specifier(const char type, va_list ap)
 			return (specifiers[i].f(ap));
 		i++;
 	}
-	return (0);
+	return (-1);
 }
 
 int	ft_printf(const char *src, ...)
 {
 	int		count;
-	char	*pivot;
+	int		aux;
 	va_list	ap;
 
 	count = 0;
-	pivot = (char *)src;
 	va_start(ap, src);
-	while (*pivot)
+	while (*src)
 	{
-		if (*pivot == '%' && *(pivot + 1))
+		if (*src == '%' && *(src + 1))
 		{
-			count += ft_print_specifier(*(pivot + 1), ap);
-			pivot += 2;
+			aux = ft_print_specifier(*(src + 1), ap);
+			if (aux < 0)
+				return (count + aux);
+			count += aux;
+			src += 2;
 		}
 		else
 		{
-			count += write(1, pivot, 1);
-			pivot++;
+			count += write(1, src, 1);
+			src++;
 		}
 	}
 	va_end(ap);
